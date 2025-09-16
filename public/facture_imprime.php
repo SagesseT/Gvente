@@ -25,24 +25,51 @@ $details = mysqli_query($conn, "SELECT vd.*, p.nom_produit
     FROM ventes_details vd 
     JOIN produits p ON vd.id_produit = p.id_produit 
     WHERE vd.id_vente = $id_vente");
+
+// Générer un nom de facture unique pour l'impression
+$nom_facture = 'Facture_' . date('Ymd_His', strtotime($vente_data['date_vente'])) . '_Ticket_' . $id_vente;
 ?>
 
 <style>
-        @media print {
-            .no-print { display: none; }
-            body { background: #fff; }
-            .facture { box-shadow: none; border: none; }
+    @media print {
+        .no-print { display: none; }
+        body { background: #fff; }
+        .facture {
+            width: 80mm !important;
+            min-width: 80mm !important;
+            max-width: 80mm !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-size: 11px !important;
         }
-        .facture { max-width: 600px; margin: 40px auto; padding: 30px; border: 1px solid #ccc; background: #fff; }
-        .facture-header { text-align: center; margin-bottom: 30px; }
-        .facture-footer { margin-top: 30px; text-align: right; }
-    </style>
+        .facture-header h1, .facture-header h2 {
+            font-size: 13px !important;
+        }
+        table {
+            font-size: 10px !important;
+        }
+        .facture-footer {
+            font-size: 10px !important;
+        }
+        .table th, .table td {
+            padding: 2px !important;
+        }
+    }
+    .facture { max-width: 600px; margin: 40px auto; padding: 30px; border: 1px solid #ccc; background: #fff; }
+    .facture-header { text-align: center; margin-bottom: 30px; }
+    .facture-footer { margin-top: 30px; text-align: right; }
+</style>
 </head>
 <body>
 <div class="facture">
     <div class="facture-header">
         <h1>Boutique Kendal filS</h1>
         <h2>Facture de Vente</h2>
+        <div style="font-size:11px;color:#888;">
+            <strong>Nom du fichier :</strong> <?= $nom_facture ?>
+        </div>
     </div>
     <div class="">
         <div><strong>   . Nom du (de la) vendeur(se) :</strong> <?= htmlspecialchars($vente_data['username']) ?></div>

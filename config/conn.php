@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "12345678";
-$dbname = "gestion_ventes";
+$password = "";
+$dbname = "gfactures";
 
 // Connexion MySQLi
 $conn = mysqli_connect($host, $user, $password, $dbname);

@@ -80,7 +80,8 @@ $produits = $produits_array;
         </table>
         <button id="add-product-row" class="btn btn-primary mb-3 no-print" type="button"><i class="bi bi-plus"></i> Ajouter un produit</button>
         <div class="mb-3">
-            <strong>Total : <span id="total-vente">0.00 FC</span></strong>
+            <strong>Total : <span id="total-vente">0.00 FC</span></strong> <br>
+            <h5>TVA : <span id=""> 0.00 FC </span></h5>
         </div>
         <div class="text-center">
             <button type="submit" name="valider_vente" class="btn btn-success">Valider la Vente & Imprimer</button>

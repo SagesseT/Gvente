@@ -13,6 +13,11 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">Gestion Ventes</a>
@@ -34,7 +39,6 @@
       </ul>
     </div>
     <div class="d-flex">
-      <?php session_start(); ?>
       <?php if (isset($_SESSION['username'])): ?>
         <span class="navbar-text text-white me-3">
           Connecté en tant que: <strong><?= htmlspecialchars($_SESSION['username']) ?></strong>
